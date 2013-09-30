@@ -59,7 +59,6 @@ function goWebRTC(opts) {
     });
     $(document).bind('callactive.jingle', function(event, video, sid) {
         console.log('call active');
-        console.warn(document.getElementById(self.config.remoteVideosEl));
         $('#' + self.config.remoteVideosEl).append(video);
         video.show();
         self.emit('videoAdded', video, sid);
@@ -67,7 +66,7 @@ function goWebRTC(opts) {
     $(document).bind('callterminated.jingle', function(event, sid, reason) {
         console.log('call terminated');
         var video = $('#' + self.config.remoteVideosEl).find('>#' + self.config.remoteVideosEl + '_' + sid);
-        if (this.config.autoRemoveVideos) {
+        if (self.config.autoRemoveVideos) {
             video.remove();
         }
         self.emit('videoRemoved', video, sid);
