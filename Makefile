@@ -6,5 +6,5 @@ API=api.js
 
 all: gowebrtc.js
 
-gowebrtc.js: $(API)
+gowebrtc.js: $(API) $(STROPHE)
 	uglifyjs $(API) $(STROPHE) $(HARK) $(JQUERY) -o gowebrtc.js
