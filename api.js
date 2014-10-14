@@ -99,7 +99,8 @@ function goWebRTC(opts) {
         console.log('ice state for', sid, sess.peerconnection.iceConnectionState);
         console.log('sig state for', sid, sess.peerconnection.signalingState);
         // works like charm, unfortunately only in chrome and FF nightly, not FF22 beta
-        if (sess.peerconnection.signalingState == 'stable' && sess.peerconnection.iceConnectionState == 'connected') {
+        if (sess.peerconnection.signalingState == 'stable' && 
+            (sess.peerconnection.iceConnectionState == 'connected' || sess.peerconnection.iceConnectionState == 'completed')) {
             if ($('#' + self.config.remoteVideosEl).find('>#' + sid).length) {
                 console.log('ignoring duplicate iceconnectionstate for', sid);
                 return;
